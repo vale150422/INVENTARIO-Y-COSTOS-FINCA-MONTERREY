@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id       Int      @id @default(autoincrement())
+  nombre   String
+  usuarios Usuario[]
+}
+
+model Usuario {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  email      String   @unique
+  password   String
+  roleId     Int
+  role       Role     @relation(fields: [roleId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model Insumo {
+  id              Int      @id @default(autoincrement())
+  nombre          String
+  unidadBase      String
+  stockMinimo     Float
+  categoria       String
+  lotes           Lote[]
+  createdAt       DateTime @default(now())
+}
+
+model Lote {
+  id                 Int      @id @default(autoincrement())
+  insumoId           Int
+  insumo             Insumo   @relation(fields: [insumoId], references: [id])
+  cantidadInicial    Float
+  cantidadActual     Float
+  costoUnitario      Float
+  fechaIngreso       DateTime
+  fechaVencimiento   DateTime
+  createdAt          DateTime @default(now())
+}

@@ -1,0 +1,10 @@
+:root {
+    --color-verde-oscuro: #47663c;
+    --color-verde-oliva: #a4ac86;
+    --color-gris-claro: #e8e8e8;
+    --color-verde-medio: #5f7c52;
+    --color-beige: #f5f2e9;
+    --color-texto: #2b2b2b;
+    --radius: 12px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, .08);
+}
